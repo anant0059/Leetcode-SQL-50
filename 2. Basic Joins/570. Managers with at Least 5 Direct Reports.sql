@@ -50,3 +50,10 @@
 
 -- Solution:
 
+# Write your MySQL query statement below
+SELECT name FROM
+    (SELECT e1.name, e1.id , COUNT(e2.managerID) as count FROM
+        Employee e1 LEFT JOIN Employee e2 ON
+            (e1.id = e2.managerID)
+        GROUP BY e1.id) AS t2
+WHERE t2.count >= 5
