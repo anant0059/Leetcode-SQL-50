@@ -51,8 +51,6 @@
 
 # Write your MySQL query statement below
 
-# Write your MySQL query statement below
-
 SELECT
     DATE_FORMAT(trans_date, '%Y-%m') AS month,
     country,
@@ -74,5 +72,3 @@ SELECT
     ) AS approved_total_amount
 FROM Transactions
 GROUP BY country, month
-
-
