@@ -49,3 +49,62 @@
 
 -- Solution:
 
+# Write your MySQL query statement below
+
+SELECT
+    product_id, 
+    new_price AS price
+FROM
+    Products
+WHERE
+    (
+        (product_id, change_date)
+        IN
+        (
+            SELECT
+                product_id, 
+                MAX(change_date)
+            FROM
+                Products
+            WHERE
+                change_date < '2019-08-17'
+            GROUP BY product_id
+        )
+    )
+
+UNION
+
+SELECT
+    t1.product_id, 
+    10 AS price
+FROM
+    Products t1
+WHERE
+    (
+        (t1.product_id, t1.change_date)
+        IN
+        (
+            SELECT
+                product_id, 
+                MIN(change_date)
+            FROM
+                Products
+            WHERE
+                change_date > '2019-08-16'
+            GROUP BY product_id
+        )
+    )
+    AND
+    (
+        (t1.product_id)
+        NOT IN
+        (
+            SELECT
+                product_id
+            FROM
+                Products
+            WHERE
+                change_date < '2019-08-17'
+            GROUP BY product_id
+        )
+    )
