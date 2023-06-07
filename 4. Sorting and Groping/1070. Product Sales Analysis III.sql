@@ -72,10 +72,17 @@
 # Write your MySQL query statement below
 
 SELECT
-    product_id,
-    MIN(year) AS first_year,
-    quantity,
-    price
+    t1.customer_id
 FROM
-    Sales
-GROUP BY product_id
+    (
+        SELECT
+            customer_id,
+            COUNT(DISTINCT product_key) AS count
+        FROM
+            Customer
+        GROUP BY customer_id 
+    ) AS t1
+WHERE 
+    (SELECT COUNT(*) FROM Product)
+    = 
+    t1.count

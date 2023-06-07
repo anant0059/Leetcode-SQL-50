@@ -64,3 +64,20 @@
 
 -- Solution:
 
+# Write your MySQL query statement below
+
+SELECT
+    t1.customer_id
+FROM
+    (
+        SELECT
+            customer_id,
+            COUNT(product_key) AS count
+        FROM
+            Customer
+        GROUP BY customer_id 
+    ) AS t1
+WHERE 
+    (SELECT COUNT(*) FROM Product)
+    = 
+    t1.count
