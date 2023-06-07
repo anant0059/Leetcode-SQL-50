@@ -72,7 +72,7 @@ FROM
     (
         SELECT
             customer_id,
-            COUNT(product_key) AS count
+            COUNT(DISTINCT product_key) AS count
         FROM
             Customer
         GROUP BY customer_id 
@@ -81,3 +81,4 @@ WHERE
     (SELECT COUNT(*) FROM Product)
     = 
     t1.count
+
