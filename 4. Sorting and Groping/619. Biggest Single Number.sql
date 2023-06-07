@@ -71,3 +71,17 @@
 
 -- Solution:
 
+# Write your MySQL query statement below
+
+SELECT 
+    MAX(t1.num) AS num
+FROM
+    (
+        SELECT
+            num,
+            COUNT(num) as count
+        FROM
+            MyNumbers
+        GROUP BY num
+    ) AS t1
+WHERE t1.count < 2
