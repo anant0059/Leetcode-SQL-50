@@ -59,3 +59,30 @@
 
 -- Solution:
 
+# Write your MySQL query statement below
+
+SELECT
+    employee_id,
+    department_id
+FROM
+    Employee
+WHERE
+    primary_flag = 'Y'
+
+UNION
+
+SELECT
+    employee_id,
+    department_id
+FROM
+    (
+        SELECT
+            employee_id,
+            department_id,
+            COUNT(employee_id) AS count
+        FROM
+            Employee
+        GROUP BY employee_id
+    ) AS t1
+WHERE
+    t1.count = 1
