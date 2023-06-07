@@ -50,7 +50,7 @@
 # Write your MySQL query statement below
 
 SELECT
-    num AS ConsecutiveNums
+    DISTINCT num AS ConsecutiveNums
 FROM
     Logs l
 WHERE 
