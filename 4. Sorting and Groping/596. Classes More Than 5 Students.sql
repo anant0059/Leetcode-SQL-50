@@ -54,3 +54,17 @@
 
 -- Solution:
 
+# Write your MySQL query statement below
+
+SELECT
+    DISTINCT t1.class
+FROM
+    (
+        SELECT 
+            class, 
+            COUNT(student) AS count
+        FROM
+            Courses
+        GROUP BY class
+    ) AS t1
+WHERE t1.count > 4
